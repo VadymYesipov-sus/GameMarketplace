@@ -1,0 +1,36 @@
+﻿@model InterviewMVCProject.Models.Player
+
+@{
+    ViewData["Title"] = "Create Player";
+}
+
+<h1>Create Player</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MoneyAmount" class="control-label"></label>
+        <input asp-for="MoneyAmount" class="form-control" />
+        <span asp-validation-for="MoneyAmount" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Class"></label>
+        <select asp-for="Class" asp-items="ViewBag.ClassOptions"></select>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

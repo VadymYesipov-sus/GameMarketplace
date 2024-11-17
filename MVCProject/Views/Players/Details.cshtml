@@ -1,0 +1,51 @@
+﻿@model InterviewMVCProject.Models.Player
+
+<h1>@Model.Name's Details</h1>
+
+<div>
+    <strong>Money Amount:</strong> @Model.MoneyAmount <br />
+    <strong>Class:</strong> @Model.Class <br />
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PlayerId">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.PlayerId">Delete</a>
+</div>
+
+<h2>Owned Items</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Rarity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price</td>
+                    <td>@item.Rarity</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">No items owned by this player.</td>
+            </tr>
+        }
+    <td>
+        <a asp-controller="Items" asp-action="Create" asp-route-ownerId="@Model.PlayerId" class="btn btn-primary">Create Item</a>
+    </td>
+    </tbody>
+</table>
+
+
+
+

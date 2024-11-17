@@ -1,0 +1,10 @@
+﻿@model InterviewMVCProject.Models.Player
+
+<h1>Delete Player</h1>
+<p>Are you sure you want to delete @Model.Name?</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="PlayerId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
