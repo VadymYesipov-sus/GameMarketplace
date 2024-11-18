@@ -19,7 +19,8 @@ namespace InterviewMVCProject.Data
             modelBuilder.Entity<Item>()
                 .HasOne(i => i.Player)
                 .WithMany(p => p.Items)
-                .HasForeignKey(i => i.PlayerId);
+                .HasForeignKey(i => i.PlayerId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Player>()
                 .HasOne(p => p.Guild)

@@ -3,16 +3,20 @@ using InterviewMVCProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MVCProject.Filters;
+using MVCProject.Interfaces;
+using MVCProject.Services;
 
 namespace InterviewMVCProject.Controllers
 {
+    [ServiceFilter(typeof(ValidationFilterAttribute))]
     public class ItemsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IItemService _itemService;
 
-        public ItemsController(ApplicationDbContext context)
+        public ItemsController(IItemService itemService)
         {
-            _context = context;
+            _itemService = itemService;
         }
 
         [HttpGet]
@@ -35,23 +39,13 @@ namespace InterviewMVCProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Item item, int ownerId)
         {
-
-            if (ModelState.IsValid)
-            {
-                item.PlayerId = ownerId;
-                Console.WriteLine($"Owner ID: {ownerId}, Player ID: {item.PlayerId}");
-                _context.Add(item);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Players", new { id = ownerId });
-            }
-            return View(item);
+            await _itemService.CreateAsync(item, ownerId);
+            return RedirectToAction("Details", "Players", new { id = ownerId });
         }
 
-
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _itemService.GetAllAsync());
         }
 
 

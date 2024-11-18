@@ -1,7 +1,33 @@
-﻿@model InterviewMVCProject.Models.Item
+﻿@model IEnumerable<InterviewMVCProject.Models.Item>
 
 @{
     ViewData["Title"] = "Items";
 }
 
 <h1>List of Items</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Rarity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ItemId</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Rarity</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.PlayerId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
