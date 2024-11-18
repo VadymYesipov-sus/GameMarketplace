@@ -23,11 +23,30 @@ namespace MVCProject.Repositories
             return item;
         }
 
+        public async Task<Item> DeleteAsync(int id)
+        {
+            var item = await _context.Items.FindAsync(id);
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+            return item;
+        }
+
+        public async Task<Item> DetailsAsync(int id)
+        {
+            var item = await _context.Items
+                .FirstOrDefaultAsync(i => i.ItemId == id);
+            return item;
+        }
+
         public async Task<IEnumerable<Item>> GetAllAsync()
         {
             return await _context.Items.ToListAsync();
         }
 
+        public async Task<Item?> GetByIdAsync(int id)
+        {
+            return await _context.Items.FindAsync(id);
+        }
 
     }
 }

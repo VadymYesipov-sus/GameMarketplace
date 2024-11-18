@@ -43,10 +43,19 @@ namespace InterviewMVCProject.Controllers
             return RedirectToAction("Details", "Players", new { id = ownerId });
         }
 
+        [HttpGet]
+        [Route("Items/Details/{id}")]
+        public async Task<IActionResult> Details(int id)
+        {
+            var item = await _itemService.DetailsAsync(id);
+            return View(item);
+        }
+
         public async Task<IActionResult> Index()
         {
             return View(await _itemService.GetAllAsync());
         }
+
 
 
     }
