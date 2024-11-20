@@ -6,6 +6,24 @@
 
 <h2> @Model.Description </h2>
 
+<a asp-action="ChangePrice" asp-route-id="@Model.ItemId" style="background-color: orange; color:black">Change price</a>
+<a asp-action="Delete" asp-route-id="@Model.ItemId" style="background-color: darkred; color:white">Delete</a>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Rarity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Price</td>
+            <td>@Model.Rarity</td>
+        </tr>
+    </tbody>
+</table>
 
 

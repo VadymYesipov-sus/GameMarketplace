@@ -51,6 +51,34 @@ namespace InterviewMVCProject.Controllers
             return View(item);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var item = await _itemService.GetByIdAsync(id);
+            return View(item);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            await _itemService.DeleteAsync(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ChangePrice(int id)
+        {
+            var item = await _itemService.GetByIdAsync(id);
+            return View(item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePrice(Item item)
+        {
+            await _itemService.ChangePriceAsync(item);
+            return RedirectToAction("Details", "Items", new { id = item.ItemId });
+        }
+
         public async Task<IActionResult> Index()
         {
             return View(await _itemService.GetAllAsync());

@@ -1,0 +1,21 @@
+﻿@model InterviewMVCProject.Models.Item;
+
+<h1> Change price of @Model.Name</h1>
+<h2> Current price: @Model.Price</h2>
+
+
+<h3>New Price</h3>
+<form asp-action="ChangePrice" method="post">
+    <input type="hidden" asp-for="ItemId" />
+    <input asp-for="Name" hidden />
+    <input asp-for="Rarity" hidden />
+
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="ChangePrice" class="btn btn-primary" />
+    </div>
+</form>

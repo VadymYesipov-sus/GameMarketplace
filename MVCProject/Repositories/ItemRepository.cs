@@ -48,5 +48,13 @@ namespace MVCProject.Repositories
             return await _context.Items.FindAsync(id);
         }
 
+        public async Task<Item> ChangePriceAsync(Item item)
+        {
+            var changedItem = await _context.Items.FirstOrDefaultAsync(i => i.ItemId == item.ItemId);
+            changedItem.Price = item.Price;
+            await _context.SaveChangesAsync();
+            return changedItem;
+        }
+
     }
 }

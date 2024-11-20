@@ -1,0 +1,11 @@
+﻿@model InterviewMVCProject.Models.Item
+
+<h1>Delete @Model.Name</h1>
+<p>Are you sure you want to delete @Model.Name?</p>
+
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ItemId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Details" asp-route-id="@Model.ItemId" class="btn btn-secondary">Cancel</a>
+</form>

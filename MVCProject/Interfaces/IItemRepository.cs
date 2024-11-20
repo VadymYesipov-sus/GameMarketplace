@@ -10,6 +10,7 @@ namespace MVCProject.Interfaces
         Task<Item?> GetByIdAsync(int id);
         Task<Item> DeleteAsync(int id);
         Task<Item> DetailsAsync(int id);
+        Task<Item> ChangePriceAsync(Item item);
 
     }
 }

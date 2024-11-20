@@ -12,6 +12,11 @@ namespace MVCProject.Services
             _itemRepository = itemRepository;
         }
 
+        public async Task<Item> ChangePriceAsync(Item item)
+        {
+            return await _itemRepository.ChangePriceAsync(item);
+        }
+
         public async Task<Item> CreateAsync(Item item, int ownerId)
         {
             return await _itemRepository.CreateAsync(item, ownerId);
