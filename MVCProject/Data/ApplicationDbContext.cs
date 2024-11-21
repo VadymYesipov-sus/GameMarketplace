@@ -27,6 +27,7 @@ namespace InterviewMVCProject.Data
                 .WithMany(g => g.Players)
                 .HasForeignKey(p => p.GuildId);
 
+
         }
 
 

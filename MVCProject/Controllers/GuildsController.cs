@@ -1,16 +1,20 @@
 ﻿using InterviewMVCProject.Data;
 using Microsoft.AspNetCore.Mvc;
+using MVCProject.Services;
 
 namespace InterviewMVCProject.Controllers
 {
     public class GuildsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly GuildService _guildService;
 
-        public GuildsController(ApplicationDbContext context)
+        public GuildsController(GuildService guildService)
         {
-            _context = context;
+            _guildService = guildService;
         }
+
+
+
         public IActionResult Index()
         {
             return View();
