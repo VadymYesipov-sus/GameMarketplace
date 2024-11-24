@@ -1,0 +1,23 @@
+﻿@model InterviewMVCProject.Models.Guild
+
+<h1> Create a guild</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" />
+    </div>
+</form>
+
+<a asp-action="Index" class="btn-danger">Cancel</a>
+

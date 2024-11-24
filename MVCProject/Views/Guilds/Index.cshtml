@@ -1,0 +1,27 @@
+﻿@model IEnumerable<InterviewMVCProject.Models.Guild>
+
+<h1> Guilds </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Player count</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var guild in Model)
+        {
+            <tr>
+                <td>@guild.Name</td>
+                <td>@guild.Description</td>
+                <td>@guild.Players.Count()</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<p>
+    <a asp-action="Create">Create New Guild</a>
+</p>
